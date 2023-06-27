@@ -631,7 +631,7 @@ img {
 }
 
 .project-imgdetails{
-    width: 365px;
+    /*width: 365px;*/
     border-radius: .5rem;
     justify-self: center;
 }
@@ -697,7 +697,7 @@ img {
     position: relative;
     background-color: var(--container-color);
     border-radius: .5rem;
-    padding: 1.5rem;
+    padding: 2rem;
 }
 
 .services__modal-services{
