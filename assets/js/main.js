@@ -69,28 +69,45 @@ tabs.forEach(tab =>{
     })
 })
 
-/*==================== SERVICES MODAL ====================*/
-const modalViews = document.querySelectorAll('.services__modal'),
-      modalBtns = document.querySelectorAll('.services__button'),
-      modalCloses = document.querySelectorAll('.services__modal-close')
+/*==================== PROJECTS/SERVICES MODAL ====================*/
+const modalViews = document.querySelectorAll('.services__modal');
+const modalBtns = document.querySelectorAll('.services__button');
+const modalCloses = document.querySelectorAll('.services__modal-close');
 
-let modal = function(modalClick){
-    modalViews[modalClick].classList.add('active-modal')
+function openModal(modalClick) {
+    modalViews[modalClick].classList.add('active-modal');
+}
+
+function closeModal() {
+    modalViews.forEach((modalView) => {
+        modalView.classList.remove('active-modal');
+    });
 }
 
 modalBtns.forEach((modalBtn, i) => {
-    modalBtn.addEventListener('click', () =>{
-        modal(i)
-    })
-})
+    modalBtn.addEventListener('click', () => {
+        openModal(i);
+    });
+});
 
 modalCloses.forEach((modalClose) => {
-    modalClose.addEventListener('click', () =>{
-        modalViews.forEach((modalView) =>{
-            modalView.classList.remove('active-modal')
-        })
-    })
-})
+    modalClose.addEventListener('click', () => {
+        closeModal();
+    });
+});
+
+document.addEventListener('click', (event) => {
+    if (!event.target.closest('.services__modal') && !event.target.closest('.services__button')) {
+        closeModal();
+    }
+});
+
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+        closeModal();
+    }
+});
+
 
 /*==================== PORTFOLIO SWIPER  ====================*/
 let swiper = new Swiper('.portfolio__container', {
